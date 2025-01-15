@@ -12,8 +12,8 @@ Route::get('/dashboard', [dashboard::class,'showDash'])->middleware(['auth', 've
 Route::post('/form', [dashboard::class,'doForm'])->middleware(['auth', 'verified'])->name('form');
 Route::get('/form', [dashboard::class,'showForm'])->middleware(['auth', 'verified'])->name('form');
 Route::get('/retrait', [dashboard::class,'showRetrait'])->middleware(['auth', 'verified'])->name('retrait');
-
-
+Route::post('/retrait', [dashboard::class,'doRetrait'])->middleware(['auth', 'verified'])->name('retrait');
+Route::get('/hist', [dashboard::class,'showH'])->middleware(['auth', 'verified'])->name('hist');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

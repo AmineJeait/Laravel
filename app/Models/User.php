@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function depot(){
         $this->HasMany(depot::class);
     }
+
+    public function transactions(){
+        $this->HasMany(transaction::class);
+    }
 }

@@ -9,11 +9,19 @@ class depot extends Model
 
     protected $fillable = [
         'Montant',
-        'users_id'
+        'users_id',
+        'type',
+        'frais'
     ];
+
+    
     public function depot(){
-        $this->belongsTo(Client::class);
+        $this->belongsTo(User::class);
     }
 
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
 
 }

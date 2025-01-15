@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('retrait')" :active="request()->routeIs('retrait')">
                         {{ __('Retirer une partie de votre argent') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('hist')" :active="request()->routeIs('hist')">
+                        {{ __('Historique') }}
+                    </x-nav-link>
                    
                 </div>
             </div>
@@ -52,7 +55,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Se déconnecter') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

@@ -5,9 +5,8 @@
 
 @section('content')  
     <div class="form">
-         <label for="">Valeur liquidative actuel : {{$VL}} DHS </label>
-        <p>La valeur liquidative est la valeur de l'action de l'opcvm</p>
-        <p>Cette valeur peu augmenter ou diminuer en fonction des invesstissements , c'est comme ça que se font les transations</p>
+         
+        <p for="">VL actuel: {{$VL}} DHS </p>
         <form  action="{{route(name:('form'))}}" method="POST">
             @csrf <!-- {{ csrf_field() }} -->
             <label for="">Combien d'actions voulez vous acheter ?</label>
