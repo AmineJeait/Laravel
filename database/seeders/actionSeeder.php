@@ -22,6 +22,51 @@ class actionSeeder extends Seeder
             'statut' => 'dispo',
             'VL' => 10,
             ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
+            [
+            'opcvms_id' => '1',
+            'statut' => 'dispo',
+            'VL' => 10,
+            ],
         ]);
     }
 }

@@ -42,19 +42,19 @@
         function updateResult() {
             const selectElement = document.getElementById('number');
             let selectedOption = selectElement.options[selectElement.selectedIndex];  // Option sélectionnée
-            let value = selectedOption.value;  // Valeur de l'option (ID et Montant séparés par un tiret)
+            let value = selectedOption.value;  // Valeur de l'option 
             let selectedId = value.split('-')[0];  // Extraire l'ID du dépôt
             let selectedMontant = parseFloat(value.split('-')[1]);  // Extraire le montant du dépôt
 
             if (!isNaN(selectedMontant)) {
                 let frais = selectedMontant * fraisDeGestion;  // Calcul des frais (2% du montant)
                 let result = selectedMontant - frais;  // Calcul du montant après frais
-                resultSpan.textContent = result.toFixed(2);  // Mettre à jour l'affichage du résultat avec 2 décimales
+                resultSpan.textContent = result.toFixed(2);  // Met à jour l'affichage du résultat avec 2 décimales
                 
-                // Mettre à jour la valeur du champ caché pour envoyer le montant après frais dans le formulaire
+                // Met à jour la valeur du champ caché pour envoyer le montant après frais dans le formulaire
                 montantApresFraisInput.value = result.toFixed(2);
                 
-                // Mettre à jour la valeur du champ caché pour envoyer l'ID du dépôt dans le formulaire
+                // Met à jour la valeur du champ caché pour envoyer l'ID du dépôt dans le formulaire
                 depotIdInput.value = selectedId;
             } else {
                 resultSpan.textContent = '0';  // Si la valeur sélectionnée n'est pas valide

@@ -31,7 +31,7 @@ class dashboard extends Controller
 
         $exp =  $VL+$VL*0.04;
 
-        Action::whereNotNull('VL')
+        Action::whereNotNull('VL')  // change la valeur de la VL
         ->update([
             'VL'=> $exp,
         ]);
@@ -39,9 +39,9 @@ class dashboard extends Controller
 
         $depots = depot::where('users_id',Auth::id())->get(); // retourne les depots en fonction de l'utilisateur
 
-        $sumDepots = $depots->sum('Montant');
+        $sumDepots = $depots->sum('Montant');   // somme des depots par utilisateur
 
-        $sumDepotsFrais = $sumDepots - $sumDepots*0.02;
+        $sumDepotsFrais = $sumDepots - $sumDepots*0.02;    // somme des depots par utilisateur - les frais
 
 
         return view('dashboard',['VL'=> $VL,'op'=>$this->op,'depots'=>$depots,'somme'=>$sumDepots,'apresfrais'=> $sumDepotsFrais]);
@@ -93,7 +93,7 @@ class dashboard extends Controller
                     'statut' => 'indispo'
                 ]);
 
-        Transaction::create([
+        Transaction::create([   // enregistrement de la transaction
             'users_id' =>$id,
             'montant' => $total,
             'type' => 'achat',
@@ -114,39 +114,38 @@ class dashboard extends Controller
 
         $VL  = action::distinct()->pluck('VL')->first();    // retourne la VL qui est la meme pour toute les actions
 
-        $min_depot = depot::whereNotNull('montant')->min("montant");
+        // $min_depot = depot::whereNotNull('montant')->min("montant");    
 
         $depots = depot::where('users_id',Auth::id())->get(); // retourne les depots en fonction de l'utilisateur
 
         $sumDepots = $depots->sum('Montant');    //retourne la somme des depots
 
 
-        
-
+    
         return view('retrait',['VL'=> $VL,'depots'=>$depots]);
        
     }
 
     public function doRetrait(Request $request){
         
-        $id = Auth::id();
+        $id = Auth::id();   // id de l'utilisateur connecté
 
-        $depotId = $request->input('depot_id');
+        $depotId = $request->input('depot_id'); // Recuperation de l'id du depot
 
-        $montant = $request->input('montant_apres_frais');
+        $montant = $request->input('montant_apres_frais');  // recuperation du montant apres les frais calculé en js    
 
-        action::where('depots_id',$depotId)
+        action::where('depots_id',$depotId) // rendre l'action disponible pour un future achat
                 ->update([
                     'depots_id' => NULL,
                     'statut' => 'dispo'
                 ]);
 
-        depot::where('id',$depotId)->delete();
+        depot::where('id',$depotId)->delete();  // supression du depot
 
         $this->op = 1;
 
 
-        Transaction::create([
+        Transaction::create([   // enregistrement de la transaction
             'users_id' =>$id,
             'montant' => $montant,
             'type' => 'retrait',
@@ -157,7 +156,7 @@ class dashboard extends Controller
 
     public function showH(){
 
-        $historiques = transaction::all();
+        $historiques = transaction::where('users_id',Auth::id())->get();    // historique des transaction par utilisateur
 
 
         return view('historique',['historiques'=>$historiques]);
